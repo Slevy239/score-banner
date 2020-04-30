@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import * as ReactBootstrap from 'react-bootstrap';
 class Main extends Component {
     state = {
         result: [],
         awayBatters: [],
-        homeBatters: []
+        homeBatters: [],
+        homeField: '',
+        awayField: ''
     }
 
 
@@ -15,6 +16,10 @@ class Main extends Component {
                 this.displayRes(res.data)
             })
             .catch(err => console.log(err))
+        this.setState({ homeField: localStorage.getItem('homeRoster') })
+        this.setState({ awayField: localStorage.getItem('awayRoster') })
+        console.log(this.state)
+
     }
     displayRes = (data) => {
         this.setState({ awayBatters: data.away_batters })
@@ -26,32 +31,7 @@ class Main extends Component {
     render() {
         return (
             <div>
-                <ReactBootstrap.Container>
-                    <ReactBootstrap.Row>
-
-
-                        {this.state.homeBatters.map(homes => {
-                            return (
-
-                                <p>{homes.display_name}</p>
-                            )
-                        })}
-                    </ReactBootstrap.Row>
-                    <ReactBootstrap.Row>
-
-
-                        {this.state.awayBatters.map(away => {
-                            return (
-
-                                <p>{away.display_name}</p>
-                            )
-                        })}
-                    </ReactBootstrap.Row>
-                </ReactBootstrap.Container>
-
-
-
-
+               
             </div>
         )
     }

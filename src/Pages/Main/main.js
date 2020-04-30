@@ -36,10 +36,16 @@ class Main extends Component {
         this.setState({ away_batter_totals: data.away_batter_totals })
         this.setState({ home_batter_totals: data.home_batter_totals })
 
-        console.log(typeof this.state.awayScores)
+        console.log(this.state.result)
 
 
         console.log(this.state.result.away_team.first_name)
+    }
+    saveHome = () => {
+        localStorage.setItem('homeRoster', this.state.result.home_team.site_name)
+    }
+    saveAway = () => {
+        localStorage.setItem('awayRoster', this.state.result.away_team.site_name)
     }
 
     render() {
@@ -91,9 +97,9 @@ class Main extends Component {
                     <Table>
                         <TableHead>
                             <TableRow >
-                                <TableCell align='center'>{this.state.homeTeamInfo.last_name}</TableCell>
+                                <TableCell align='center' id='homeName' onClick={this.saveHome}>{this.state.homeTeamInfo.last_name}</TableCell>
                                 <TableCell align='center'>Inning</TableCell>
-                                <TableCell align='center'>{this.state.awayTeamInfo.last_name}</TableCell>
+                                <TableCell align='center' onClick={this.saveAway}>{this.state.awayTeamInfo.last_name}</TableCell>
                             </TableRow>
                         </TableHead>
                     </Table>
